@@ -114,6 +114,9 @@
 
             String select = "select * from tbl_supervisor where supervisor_email='" + request.getParameter("txtemail") + "'  and supervisor_password='" + request.getParameter("txtpwd") + "'";
             ResultSet resul = con.selectCommand(select);
+            
+             String selecte = "select * from tbl_employee where employee_email='" + request.getParameter("txtemail") + "'  and employee_password='" + request.getParameter("txtpwd") + "'";
+            ResultSet resule = con.selectCommand(selecte);
 
            
             if (rs.next()) {
@@ -152,6 +155,16 @@
 %>
                 <script>
                        window.location="../Supervisor/Home4.jsp";
+                </script>
+                <%
+
+            }
+            else if (resule.next()) {
+                session.setAttribute("eid", resule.getString("employee_id"));
+                session.setAttribute("ename", resule.getString("employee_name"));
+%>
+                <script>
+                       window.location="../Employee/Home4.jsp";
                 </script>
                 <%
 
